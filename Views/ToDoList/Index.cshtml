@@ -1,0 +1,32 @@
+﻿@model System.Data.DataTable
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>To-Do</th>
+        <th>To Description</th>
+        <th>Action</th>
+    </tr>
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>
+                <a href="@Url.Action("Edit","ToDoList", new {@id=Model.Rows[i][0]})">Edit </a>
+                <a href="@Url.Action("Delete","ToDoList", new {@id=Model.Rows[i][0]})">| Delete</a>
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<a href="@Url.Action("Create","ToDoList")">Add</a>
+
+
+
